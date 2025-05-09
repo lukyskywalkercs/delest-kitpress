@@ -1,0 +1,804 @@
+/* css/style.css */
+/* 
+  Sugerencia de fuentes:
+  Para encabezados (punk/stencil/agresivo): 'Bangers', 'Notable', 'Impact', 'Arial Black', sans-serif;
+  Para cuerpo de texto (sans-serif legible): 'Oswald', 'Roboto Condensed', 'Arial', sans-serif;
+  Puedes importarlas desde Google Fonts en tu HTML:
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Notable&family=Oswald:wght@400;700&display=swap" rel="stylesheet"> 
+*/
+
+body {
+    font-family: 'Albert Sans', 'ui-sans-serif', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(255, 255, 255); /* Fondo blanco */
+    color: rgb(17, 17, 17); /* Texto oscuro principal */
+    font-size: 21px; /* Tamaño base, considerar ajustar para párrafos largos */
+    font-weight: 500;
+    letter-spacing: -0.21px;
+    line-height: 31.5px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    width: 90%;
+    max-width: 1280px; /* Aumentado para ensanchar columnas */
+    margin: 0 auto;
+    /* padding: 20px 0; Eliminamos el padding vertical aquí para que el layout de columnas lo maneje si es necesario */
+    padding-bottom: 20px;
+}
+
+/* Layout de dos columnas */
+.two-column-layout {
+    display: flex !important; /* Forzar display flex */
+    flex-wrap: wrap !important; /* Mantener el wrap para responsividad */
+    gap: 40px; /* Aumentamos el gap para más separación entre columnas */
+    padding-top: 20px;
+    /* padding-bottom: 20px; */
+}
+
+.column-left,
+.column-right {
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    padding: 0 15px; /* Añadimos padding horizontal interno a las columnas */
+    /* border: 1px solid green !important; */ /* Borde de depuración general para columnas */
+}
+
+@media (min-width: 782px) {
+    .two-column-layout {
+        /* No es necesario flex-wrap: nowrap; aquí si flex-basis está bien calculado */
+    }
+    .column-left,
+    .column-right {
+        flex-basis: calc(50% - 20px) !important; /* Volvemos a 50% */
+        width: calc(50% - 20px) !important;
+        flex-grow: 1 !important;
+    }
+}
+
+@media (max-width: 781px) { /* Revertido a 781px para el punto de ruptura correcto */
+    .two-column-layout {
+        flex-direction: column !important; /* Forzar dirección de columna */
+        gap: 0; 
+    }
+    .column-left,
+    .column-right {
+        flex-basis: 100% !important; /* Forzar basis */
+        width: 100% !important; /* Forzar width */
+    }
+}
+
+/* Encabezado */
+header {
+    background-color: #ffffff; /* Un gris muy claro para el encabezado, o blanco si se prefiere */
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0; /* Borde inferior sutil */
+}
+
+header .logo {
+    font-family: 'Impact', 'Arial Black', sans-serif; /* Fallback - Sugerencia: 'Bangers', 'Notable' */
+    font-size: 3em;
+    color: #ff0000; /* Rojo para el logo */
+    margin: 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+header .logo-img {
+    max-height: 70px; /* Ajusta según el tamaño de tu logo */
+    width: auto;
+    margin-bottom: 10px;
+}
+
+header .press-kit-title {
+    font-size: 1.1em; /* Ajustado relativo al nuevo base */
+    color: #555; /* Un gris oscuro para el subtítulo */
+    margin-top: 5px;
+    font-weight: 400; /* Más ligero que el cuerpo */
+}
+
+.header-tagline {
+    font-family: 'Albert Sans', sans-serif;
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 8px;
+    font-weight: 400;
+}
+
+/* Secciones generales */
+section {
+    padding: 30px 0;
+    border-bottom: 1px solid #eee; /* Separador más claro */
+}
+
+section:last-of-type {
+    border-bottom: none;
+}
+
+h2 {
+    font-family: "Impactltstd"; /* Fuente Impactltstd con fallbacks */
+    color: rgb(17, 17, 17);
+    display: block;
+    font-size: 32px;
+    font-weight: 600;
+    height: 35.1875px; /* Altura fija, considerar impacto en responsividad */
+    letter-spacing: -0.96px;
+    line-height: 35.2px;
+    margin-top: 24px;      /* margin-block-start: 24px */
+    margin-bottom: 32px;   /* margin-block-end: 32px */
+    margin-left: 0px;      /* margin-inline-start: 0px */
+    margin-right: 0px;     /* margin-inline-end: 0px */
+    overflow-wrap: break-word;
+    text-align: left;
+    /* unicode-bidi: isolate; CSS estándar no requiere este valor explícito normalmente para el layout LTR */
+    /* word-break: break-word; Ya está en .column-left/right, pero se puede añadir si es específico para H2 */
+    word-break: break-word; /* Añadido explícitamente */
+    -webkit-font-smoothing: antialiased; /* Aunque ya está en body, se especifica aquí */
+    /* Eliminamos text-transform: uppercase; y otras propiedades no listadas */
+}
+
+/* Estilos generales para párrafos dentro de las secciones de las columnas */
+.column-left section p,
+.column-right section p {
+    color: rgb(0, 0, 0); /* Negro puro para párrafos */
+    font-family: 'Albert Sans', 'ui-sans-serif', sans-serif; /* Asegurar fuente */
+    font-size: 21px; /* Coincide con el base del body pero es específico */
+    font-weight: 500;
+    letter-spacing: -0.21px;
+    line-height: 31.5px;
+    margin-top: 32px; /* Margen superior para párrafos */
+    margin-bottom: 0px; /* Margen inferior para párrafos */
+    /* Excepciones pueden ser necesarias para párrafos con estilos especiales */
+}
+
+/* Ajuste para el primer párrafo después de un H2, si se quiere menos espacio */
+/* h2 + p {
+    margin-top: 16px; 
+} */
+
+/* Hero Section */
+#hero {
+    padding-top: 0; /* Menos padding si el H2 se elimina */
+    text-align: center; /* Centrar la imagen del logo */
+}
+
+#hero-skull-logo {
+    display: inline-block; /* Para que el centrado de #hero funcione */
+    margin: 20px auto;
+    max-width: 450px; /* Ajustar tamaño del logo calavera */
+    height: auto;
+    border: none; /* Sin borde para el logo calavera */
+    background-color: transparent; /* Sin fondo si es PNG transparente */
+}
+
+/* Ya no necesitamos el p dentro de #hero para el placeholder */
+/* #hero p { ... } */
+
+
+/* Biografía */
+#bio p {
+    /* Eliminamos estilos específicos para que herede de .column-left section p y la regla común de justificación */
+    /* font-size: 0.95em; */
+    /* line-height: 1.7; */
+    /* font-weight: 400; */ 
+    /* margin-top: 0; */
+}
+
+/* Artist Info */
+#artist-info p {
+    /* Eliminamos estilos específicos para que herede de .column-left section p y la regla común de justificación */
+    /* font-size: 0.95em; */
+    /* line-height: 1.7; */
+    /* font-weight: 400; */
+    /* margin-top: 0; */
+}
+#artist-info p strong {
+    color: #111;
+    font-weight: 700;
+}
+
+/* Discography & Posters */
+#discography .gallery,
+#posters .gallery {
+    display: flex;
+    gap: 15px; /* Este es el gap general, #posters .gallery lo sobreescribirá */
+    margin-top: 15px;
+}
+
+#discography .gallery { /* Estilos para la galería de discografía */
+    flex-wrap: nowrap; 
+    overflow-x: auto;  
+    justify-content: flex-start; 
+    gap: 10px; /* Espacio entre imágenes como en la imagen de referencia */
+    padding-bottom: 10px; 
+    align-items: center; /* Para alinear verticalmente si las alturas varían un poco */
+}
+
+#posters .gallery { 
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Alinear a la izquierda */
+    gap: 10px; /* Espacio específico entre posters */
+}
+
+#discography .gallery img { /* Estilos específicos para las imágenes de discografía */
+    /* display: block; */ /* No es estrictamente necesario si el padre es flex y no hay otros elementos inline */
+    height: auto;
+    /* max-width: 100%; */ /* Lo controlaremos con flex-basis y max-width específico */
+    /* width: 180px; */ /* Eliminamos el width fijo */
+    border-radius: 8px; 
+    object-fit: contain; 
+
+    flex-grow: 1;     /* Permitir que crezcan para llenar el espacio */
+    flex-shrink: 1;   /* Permitir que se encojan si es necesario */
+    flex-basis: 0;    /* Base flexible para que se distribuyan */
+    max-width: 110px; /* Correctamente colocado aquí */
+}
+
+#posters .gallery img {
+    width: 190px; 
+    height: auto; 
+    aspect-ratio: 190 / 238; /* Mantiene la proporción vertical */
+    object-fit: cover; /* Asegura que la imagen cubra el área, recortando si es necesario */
+    /* margin: 5px; Se elimina para usar el gap del contenedor flex */ 
+    cursor: pointer; 
+    border-radius: 8px; /* Esquinas redondeadas */
+    box-sizing: border-box; /* Añadido para incluir el borde en el ancho total */
+}
+
+/* Música - Spotify Embed */
+#music iframe {
+    display: block;
+    margin: 20px auto 0 auto;
+    max-width: 700px;
+}
+
+/* Redes Sociales */
+#social {
+    text-align: center; /* Centrar el título y la lista de iconos */
+}
+
+#social .social-media-title { /* Estilo para el nuevo título h3 */
+    font-family: "Impactltstd", "Impact", "Arial Black", sans-serif; /* O la fuente que prefieras para este título */
+    color: rgb(17, 17, 17);
+    font-size: 28px; /* Un poco más pequeño que h2 */
+    font-weight: 600;
+    letter-spacing: -0.8px;
+    line-height: 1.2;
+    margin-top: 24px;
+    margin-bottom: 25px;
+    text-align: center; /* Asegurar centrado */
+}
+
+#social ul.social-links-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Centrar los iconos en la lista */
+    flex-wrap: wrap; /* Permitir que pasen a otra línea si no caben */
+    gap: 20px; /* Espacio entre iconos */
+}
+
+#social ul.social-links-list li.social-link-item {
+    /* No se necesita display:inline-block si ul es flex */
+}
+
+#social ul.social-links-list li.social-link-item a.social-link-anchor {
+    display: inline-block; /* Para que el enlace tome dimensiones */
+    color: #333; /* Color base para el icono, SVG usará currentColor */
+    transition: color 0.3s ease;
+}
+
+#social ul.social-links-list li.social-link-item a.social-link-anchor svg {
+    width: 30px; /* Tamaño de los iconos SVG */
+    height: 30px;
+    fill: currentColor; /* Hereda el color del enlace <a> */
+    vertical-align: middle; /* Alinear bien si hay texto alrededor, aunque aquí no lo habrá visible */
+}
+
+#social ul.social-links-list li.social-link-item a.social-link-anchor:hover {
+    color: #007bff; /* Cambiar color del icono al pasar el cursor (azul) */
+}
+
+/* Estilo para texto accesible solo a lectores de pantalla */
+.screen-reader-text {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    word-wrap: normal !important;
+}
+
+/* Botón de descarga y formulario */
+.button {
+    display: inline-block;
+    background-color: #333; /* Botón oscuro */
+    color: #fff; /* Texto blanco */
+    padding: 12px 25px;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 2px solid #333;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    cursor: pointer;
+    font-family: 'Albert Sans', 'ui-sans-serif', sans-serif;
+    font-size: 0.85em;
+    letter-spacing: 0.5px;
+}
+
+.button:hover {
+    background-color: #555; /* Un poco más claro al pasar */
+    color: #fff;
+    border-color: #555;
+}
+
+#download {
+    text-align: center;
+}
+#download p {
+     color: #777;
+     font-size: 0.8em;
+}
+
+/* Contact Section Styles */
+#contact {
+    /* background-color: #f9f9f9; Un fondo ligeramente diferente si se desea */
+    /* padding: 30px 0; Ya tiene padding general de section */
+}
+
+#contact h2 {
+    text-align: center; /* Centrar el título de la sección de contacto */
+    margin-bottom: 30px;
+}
+
+#contact form {
+    max-width: 650px; /* Ancho máximo del formulario */
+    margin: 0 auto 30px auto; /* Centrar formulario y añadir margen inferior */
+    padding: 30px;
+    background-color: #fff; /* Fondo blanco para el formulario */
+    border: 1px solid #e0e0e0; /* Borde sutil */
+    border-radius: 8px; /* Esquinas redondeadas */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Sombra ligera */
+}
+
+#contact form div {
+    margin-bottom: 20px; /* Más espacio entre campos */
+}
+
+#contact label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333; /* Color de etiqueta más oscuro */
+    font-weight: 600; /* Un poco más de peso */
+    font-size: 0.9em;
+}
+
+#contact input[type="text"],
+#contact input[type="email"],
+#contact textarea {
+    width: calc(100% - 24px); /* Ajustar ancho teniendo en cuenta padding */
+    padding: 12px;
+    border: 1px solid #ccc;
+    background-color: #fdfdfd; /* Fondo de input ligeramente diferente */
+    color: #333;
+    border-radius: 5px; /* Esquinas más redondeadas para inputs */
+    font-family: 'Albert Sans', sans-serif;
+    font-size: 1em; /* Tamaño de fuente base para inputs */
+    font-weight: 400;
+    transition: border-color 0.3s ease;
+}
+
+#contact input[type="text"]:focus,
+#contact input[type="email"]:focus,
+#contact textarea:focus {
+    border-color: #007bff; /* Resaltar borde al enfocar */
+    outline: none; /* Quitar outline por defecto */
+}
+
+#contact textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+#contact button[type="submit"].button {
+    display: block;
+    width: 100%;
+    padding: 12px 25px; /* Asegurar consistencia con otros .button */
+    font-size: 1em; /* Tamaño de fuente del botón */
+}
+
+#contact p.direct-contact-info { /* Clase para el párrafo "Or contact us..." */
+    text-align: center;
+    margin-top: 0; /* Ya hay margen inferior en el form */
+    margin-bottom: 25px;
+    font-size: 0.95em;
+}
+
+.contact-details {
+    /* max-width: 650px; Eliminado */
+    /* margin: 0 auto; Eliminado */
+    padding: 25px 0; /* Ajustado padding, principalmente vertical */
+    /* background-color: #fdfdfd; Eliminado */
+    /* border: 1px solid #e0e0e0; Eliminado */
+    /* border-radius: 8px; Eliminado */
+    font-size: 0.95em;
+    color: #333;
+    /* box-shadow: 0 2px 5px rgba(0,0,0,0.05); Eliminado */
+    margin-top: 20px; /* Espacio respecto al párrafo anterior */
+}
+
+.contact-details p {
+    margin-bottom: 5px; /* Reducido el margen inferior */
+    line-height: 1.5; /* Reducido el interlineado */
+}
+
+.contact-details strong {
+    color: #111;
+    font-weight: 700;
+    display: block; 
+    margin-bottom: 4px; /* Reducido el margen inferior del strong */
+}
+.contact-details a {
+    color: #007bff;
+    text-decoration: none;
+}
+.contact-details a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+/* Multimedia Adicional */
+#media-embeds .video-container iframe, /* Aplicar a iframe directamente si no hay video-container */
+#media-embeds iframe {
+    display: block;
+    margin: 20px auto; /* Mantiene el margen superior e inferior original */
+    margin-bottom: 15px; /* Añade o ajusta el margen inferior específico para los iframes */
+    max-width: 700px; /* Ajustar si es necesario */
+    width: 100%;      /* Hacerlo responsivo */
+    border: 1px solid #ddd; /* Borde sutil */
+}
+
+#media-embeds p {
+    text-align:center;
+    color: #777;
+    font-size: 0.8em;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 25px 0;
+    margin-top: 30px;
+    background-color: #ffffff;
+    color: #555;
+    font-size: 0.9em;
+    border-top: 1px solid #e0e0e0;
+    font-weight: 400;
+}
+
+/* Responsive Design - Ajustes menores pueden ser necesarios */
+@media (max-width: 768px) {
+    body {
+        font-size: 18px; /* Reducir un poco el tamaño base en móviles */
+        line-height: 28px;
+    }
+    header .logo-img {
+        max-height: 60px;
+    }
+    h2 {
+        font-size: 1.8em;
+    }
+    #social ul li {
+        display: block;
+        margin: 10px 0;
+    }
+    #bio p {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 16px;
+        line-height: 25px;
+    }
+    header .logo-img {
+        max-height: 50px;
+    }
+    header .press-kit-title {
+        font-size: 1em;
+    }
+    h2 {
+        font-size: 1.6em;
+    }
+    .button {
+        padding: 10px 20px;
+        font-size: 0.8em;
+    }
+    #contact input[type="text"],
+    #contact input[type="email"],
+    #contact textarea {
+        padding: 10px;
+        font-size: 0.85em;
+    }
+    .container {
+        width: 95%; /* Más ancho en móviles muy pequeños */
+    }
+}
+
+/* Nueva sección Press Photos */
+#press-photos .press-photos-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Consistente con posters */
+    justify-content: flex-start;
+}
+
+#press-photos .press-photos-gallery .poster-lightbox-trigger img {
+    width: 190px; /* Consistente con posters */
+    height: auto;
+    aspect-ratio: 190 / 238; /* Consistente con posters */
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    box-sizing: border-box;
+    border: 1px solid #ddd; /* Borde ligero opcional */
+}
+
+#download .button-link {
+    display: inline-block;
+    background-color: #333; /* Botón oscuro */
+    color: #fff; /* Texto blanco */
+    padding: 12px 25px;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 2px solid #333;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    cursor: pointer;
+    font-family: 'Albert Sans', 'ui-sans-serif', sans-serif;
+    font-size: 0.85em;
+    letter-spacing: 0.5px;
+}
+
+#download .button-link:hover {
+    background-color: #555; /* Un poco más claro al pasar */
+    color: #fff;
+    border-color: #555;
+}
+
+/* Lightbox Modal Styles */
+.lightbox-modal {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Se queda fijo en la pantalla */
+    z-index: 1000; /* Por encima de todo lo demás */
+    padding-top: 60px; /* Espacio desde arriba */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Permite scroll si la imagen es muy grande */
+    background-color: rgba(0,0,0,0.9); /* Fondo negro semitransparente */
+}
+
+.lightbox-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    /* Animación */
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Caption (si se usa) */
+#lightbox-caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px; /* Ajustar si se usa caption largo */
+}
+
+/* Responsive para imagen en modal */
+@media (max-width: 700px){
+    .lightbox-content {
+        width: 95%;
+    }
+    #lightbox-caption {
+        width: 95%;
+    }
+}
+
+/* Galerías específicas en columna derecha (Prensa, Support) */
+.press-gallery,
+.support-gallery {
+    display: flex;
+    /* flex-wrap: wrap; Lo quitamos para .press-gallery o lo sobreescribimos */
+    gap: 20px; /* Gap general, .press-gallery lo sobreescribirá */
+    justify-content: flex-start; 
+}
+
+.press-gallery { /* Estilos específicos para la galería de Prensa */
+    flex-wrap: nowrap; /* Forzar una sola línea */
+    gap: 10px; /* Reducir el gap para que quepan tres */
+    /* overflow-x: auto; Opcional, si se prefiere scroll a encoger/desbordar */
+}
+
+.press-gallery .gallery-item { 
+    max-width: 190px; /* Máximo ancho de la imagen */
+    width: 190px; /* Para asegurar el tamaño si no hay flex-grow/shrink */
+    box-sizing: border-box;
+    position: relative; 
+    /* flex-basis: auto; o width: 190px; */
+    /* flex-shrink: 0; Opcional, para evitar que se encojan */
+}
+
+.press-gallery .gallery-item .poster-lightbox-trigger img { 
+    width: 190px; 
+    height: auto; 
+    aspect-ratio: 190 / 238; 
+    object-fit: cover; 
+    border-radius: 8px;
+    cursor: pointer; 
+    display: block; 
+}
+
+/* Estilo para el caption externo en la sección PRESS */
+.press-gallery .gallery-item a.external-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0) 100%);
+    color: white;
+    padding: 15px 10px 10px 10px; 
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 0.8em;
+    border-bottom-left-radius: 8px; 
+    border-bottom-right-radius: 8px;
+    text-decoration: none; /* Asegurar que no haya subrayado */
+    display: block; /* Para que ocupe todo el ancho */
+    transition: opacity 0.3s ease; /* Opcional: para efecto hover */
+    /* opacity: 0; Descomentar si se quiere mostrar solo al hacer hover */
+}
+
+/* Opcional: Mostrar caption de PRESS al hacer hover sobre el gallery-item
+.press-gallery .gallery-item:hover a.external-caption {
+    opacity: 1;
+}
+*/
+
+/* Se eliminan los estilos de .press-gallery .gallery-item p a que ya no aplican */
+
+/* Puntos Clave para Contratación */
+#why-book h2 {
+    margin-bottom: 20px; /* Más espacio antes de la lista */
+}
+
+.booking-points {
+    list-style: none;
+    padding-left: 0;
+}
+
+.booking-points li {
+    padding: 10px 0; /* Ajustado padding, eliminado el izquierdo para el check */
+    margin-bottom: 10px;
+    font-size: 0.95em;
+    line-height: 1.6;
+}
+
+/* Música - Spotify Embed */
+#music iframe {
+    display: block;
+    margin: 20px auto 0 auto;
+    max-width: 700px;
+}
+
+.support-gallery .gallery-item { /* Esta es la definición específica para support-gallery */
+    flex-basis: calc(50% - 10px); /* Para 2 por línea, con gap de 20px */
+    max-width: 264.828px; 
+    box-sizing: border-box;
+    position: relative; 
+}
+
+/* El enlace ahora es el contenedor principal del item visual */
+.support-gallery .gallery-item a {
+    display: block; /* Para que ocupe el espacio y permita posicionar el caption */
+    position: relative; /* Para el caption */
+    text-decoration: none; /* Quitar subrayado si lo hereda */
+}
+
+.support-gallery .gallery-item img {
+    width: 264.828px; /* Ancho específico solicitado */
+    height: 397.234px; /* Alto específico solicitado */
+    object-fit: cover; 
+    border-radius: 8px; 
+    display: block; 
+}
+
+.support-gallery .gallery-item .caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0) 100%);
+    color: white;
+    padding: 15px 10px 10px 10px; /* Más padding arriba para el degradado */
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 0.8em;
+    border-bottom-left-radius: 8px; /* Redondear esquinas inferiores con la imagen */
+    border-bottom-right-radius: 8px;
+    /* Ocultar caption por defecto y mostrar al hacer hover sobre el item, opcional:
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    */
+}
+
+/* Opcional: Mostrar caption al hacer hover sobre el gallery-item o el enlace <a>
+.support-gallery .gallery-item a:hover .caption {
+    opacity: 1;
+}
+*/
+
+/* Eliminamos los estilos de los <p> que estaban antes debajo de las imágenes en support-gallery */
+/* .support-gallery .gallery-item p a, ... */
+
+/* Puntos Clave para Contratación */
+#why-book h2 {
+    margin-bottom: 20px; /* Más espacio antes de la lista */
+}
+
+/* Estilos para la sección de Support a ancho completo */
+.full-width-section {
+    clear: both; /* Asegurar que esté debajo de las columnas flotantes si se usara float */
+    padding-top: 30px; /* Espacio superior */
+    padding-bottom: 30px; /* Espacio inferior */
+    border-top: 1px solid #eee; /* Opcional: separador superior */
+}
+
+.full-width-section h2 {
+    text-align: center; /* Centrar el título de la sección si se desea */
+    margin-bottom: 25px;
+}
+
+/* Ajustes para .support-gallery cuando está en .full-width-section */
+.full-width-section .support-gallery {
+    justify-content: center; /* Centrar los items de la galería */
+    /* flex-basis y max-width en .gallery-item ya controlan el tamaño de los items */
+} 
